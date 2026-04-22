@@ -28,67 +28,44 @@
 <body>
 
     <div class="box">
-        <h2>Login</h2>
+        <h2>Login Form</h2>
         
         <label>Username</label><br>
-        <input type="text" id="username" placeholder="Enter here" style="width: 90%; padding: 10px; margin: 10px 0; border-radius: 15px; border: none; text-align: center;"><br>
+        <input type="text" id="username" placeholder="Enter here"  required; style="width: 90%; padding: 10px; margin: 10px 0; border-radius: 15px; border: none; text-align: center;"><br>
 
         <label>Password</label><br>
         <input type="password" id="password" placeholder="********" style="width: 90%; padding: 10px;margin: 10px 0; border-radius: 15px; border: none; text-align: center;"><br>
 
-  <div style="margin: 15px 0;">
+         <p id="display"></p>
+
+
+
+       
+
+    </form>
+
+     <div style="margin: 15px 0;">
     <input type="checkbox" id="checked" onclick="message()"> 
     <label for="checked">Stay logged in</label>
     
     <p id="message"></p>
-</div>
-
-        <button onclick="checkLogin()" class="btn-login" style="background-color: #5bc0de; border: none; padding: 10px 20px; border-radius: 15px; color: white; cursor: pointer; " id="log">Login</button>
-        <button onclick="window.location.reload()" class="btn-cancel" style="background-color: #f8f9fa; border: none; padding: 10px 20px;border-radius: 15px; cursor: pointer;
-        " type="reset">Cancel</button>
         
         <p style="font-size: 15px; margin-top: 20px;">
             Forgot username / password?
         </p>
-    </div>
 
 
-<script>
 
-function checkLogin(){
-            let user = document.getElementById("username").value;
-            let pass = document.getElementById("password").value;
-            
-            let granted = "Welcome " + username + "!";
-            let denied = "Access denied. Account locked after 3 attempts!";
+        <button onclick="checkLogin()" class="btn-login" style="background-color: #5bc0de; border: none; padding: 10px 20px; border-radius: 15px; color: white; cursor: pointer; ">Login</button>
+        <button onclick="window.location.reload()" class="btn-cancel" style="background-color: #f8f9fa; border: none; padding: 10px 20px;border-radius: 15px; cursor: pointer;
+        " type="reset">Cancel</button>
 
-             while (attempt_counter < 5) {
-            if (username === "bakalover" && pwd === "loverbaka") {
-            alert(granted);
-            attempt_counter = 0; // reset attempts after successful login
-            document.getElementById("display").innerHTML = "";
-            window.location.href = "index.html";
+       
 
 
-            break; // stop loop
-        }
-             }
-            }
-           
-            else {
-            attempt_counter++;
-            document.getElementById("display").innerHTML =
-                "Incorrect username and/or password. Attempt " + attempt_counter + " of 5 ";
-            break; // stop loop for this click
-        }
+   <script>
 
-        if (attempt_counter >= 5) {
-                alert(denied);
-                document.getElementById("log").disabled = true; // disable button
-            }
-
-
-    function message() {
+        function message() {
     let checked = document.getElementById("checked").checked;
 
     // switch statement to see if true or false
@@ -104,7 +81,43 @@ function checkLogin(){
 } 
 
 
-    
-</script>
+        let attempt_counter = 0;
+
+
+        function checkLogin(){
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let inside = "Welcome " + username + "!";
+            let not = "Access denied. Account locked after 3 attempts!";
+
+
+        while (attempt_counter < 5) {
+        if (username === "bakalover" && password === "loverbaka") {
+            alert(inside);
+            attempt_counter = 0; // reset attempts after successful login
+            document.getElementById("display").innerHTML = "";
+            window.location.href = "index.html";
+
+
+            break; // stop loop
+        }
+
+
+        else {
+            attempt_counter++;
+            document.getElementById("display").innerHTML =
+                "Incorrect username and/or password. Attempt " + attempt_counter + " of 5 ";
+            break; // stop loop for this click
+        }
+
+
+        }
+        if (attempt_counter >= 3) {
+                alert(not);
+                document.getElementById("loginBTN").disabled = true; // disable button
+            }
+        }
+    </script>
+
 </body>
 </html>
